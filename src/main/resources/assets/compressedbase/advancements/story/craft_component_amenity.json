@@ -1,0 +1,26 @@
+{
+    "display": {
+        "icon": {
+            "item": "compressedbase:component_amenity"
+        },
+        "title": {
+            "translate": "compressedbase.advancements.story.craft_component_amenity.title"
+        },
+        "description": {
+            "translate": "compressedbase.advancements.story.craft_component_amenity.description"
+        }
+    },
+    "parent": "compressedbase:story/craft_component_base",
+    "criteria": {
+        "component_amenity": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "compressedbase:component_amenity"
+                    }
+                ]
+            }
+        }
+    }
+}

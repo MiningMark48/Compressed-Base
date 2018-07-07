@@ -1,0 +1,10 @@
+{
+  "variants": {
+  	"facing=up": { "model": "compressedbase:compressed_base" },
+    "facing=down": { "model": "compressedbase:compressed_base" },
+    "facing=north": { "model": "compressedbase:compressed_base" },
+    "facing=south": { "model": "compressedbase:compressed_base", "y": 180 },
+    "facing=west":  { "model": "compressedbase:compressed_base", "y": 270 },
+    "facing=east":  { "model": "compressedbase:compressed_base", "y": 90 }
+  }
+}

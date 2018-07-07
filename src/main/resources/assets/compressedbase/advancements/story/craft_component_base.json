@@ -1,0 +1,26 @@
+{
+    "display": {
+        "icon": {
+            "item": "compressedbase:component_base"
+        },
+        "title": {
+            "translate": "compressedbase.advancements.story.craft_component_base.title"
+        },
+        "description": {
+            "translate": "compressedbase.advancements.story.craft_component_base.description"
+        }
+    },
+    "parent": "compressedbase:story/root",
+    "criteria": {
+        "component_base": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "items": [
+                    {
+                        "item": "compressedbase:component_base"
+                    }
+                ]
+            }
+        }
+    }
+}

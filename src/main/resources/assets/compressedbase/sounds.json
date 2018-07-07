@@ -1,0 +1,7 @@
+{
+	"block.compressed_base.dw20": {
+		"category": "block",
+		"subtitle": "subtitles.block.compressed_base.dw20",
+		"sounds": ["compressedbase:block/compressed_base/dw20_intro"]
+	}
+}

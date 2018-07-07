@@ -1,0 +1,22 @@
+[
+  {
+    "_comment": "Generated using MiningMark48's JSON Generator.",
+    "modid": "CompressedBase",
+    "name": "Compressed Base",
+    "description": "It's a compressed base!",
+    "version": "0.0.1",
+    "credits": "",
+    "logoFile": "",
+    "mcversion": "1.12.2",
+    "url": "https://miningmark48.xyz",
+    "updateUrl": "",
+    "authorList": [
+      "MiningMark48"
+    ],
+    "parent": "",
+    "screenshots": [],
+    "dependencies": [
+      "mod_MinecraftForge"
+    ]
+  }
+]

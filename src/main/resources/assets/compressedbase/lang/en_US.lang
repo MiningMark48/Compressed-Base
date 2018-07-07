@@ -1,0 +1,46 @@
+#Logging
+log.info.init=Mod Initialized!
+log.info.init=Mod Post-Initialized!
+
+#Creative Tab
+itemGroup.compressedbase=Compressed Base
+
+#Blocks
+tile.compressed_base.name=Compressed Base
+tile.compressed_base_extension.name=Compressed Base Extension
+
+#Items
+item.component_amenity.name=Amenity Component
+item.component_base.name=Component Base
+item.component_ceiling.name=Ceiling Component
+item.component_wall.name=Wall Component
+
+#Tooltips
+tooltip.item.hold=Hold
+tooltip.item.shift=Sneak
+tooltip.block.compressed_base.line1.p1=Direwolf20's
+tooltip.block.compressed_base.line1.p2=9x9 base in a single block!
+tooltip.block.compressed_base.line5=Sneak + Right Click to toggle preview (WIP).
+tooltip.block.compressed_base.line2=Extensions can also be added when placed in any pattern.
+tooltip.block.compressed_base.line3=Make a pattern with Compressed Base Extensions
+tooltip.block.compressed_base.line4=and right click the central block.
+tooltip.block.compressed_base_extension.line1=Extensions to the 9x9!
+
+#Subtitles
+subtitles.block.compressed_base.dw20=Direwolf20 Yells
+
+#Advancements
+compressedbase.advancements.story.root.title=Compressed Base
+compressedbase.advancements.story.root.description=It's Direwolf20's favorite base in a single block.
+compressedbase.advancements.story.craft_component_base.title=Component Base
+compressedbase.advancements.story.craft_component_base.description=Craft a component base.
+compressedbase.advancements.story.craft_component_amenity.title=Amentiy Component
+compressedbase.advancements.story.craft_component_amenity.description=Craft an amenity component.
+compressedbase.advancements.story.craft_component_ceiling.title=Ceiling Component
+compressedbase.advancements.story.craft_component_ceiling.description=Craft a ceiling component.
+compressedbase.advancements.story.craft_component_wall.title=Wall Component
+compressedbase.advancements.story.craft_component_wall.description=Craft a wall component.
+compressedbase.advancements.story.craft_compressed_base.title=Compressed Base
+compressedbase.advancements.story.craft_compressed_base.description=Craft a compressed base.
+compressedbase.advancements.story.craft_compressed_base_extension.title=Compressed Base Extension
+compressedbase.advancements.story.craft_compressed_base_extension.description=Craft an extension for the compressed base.

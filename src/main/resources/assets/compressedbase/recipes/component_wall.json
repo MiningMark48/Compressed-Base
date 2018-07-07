@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "XZX",
+    "XYX",
+    "XXX"
+  ],
+  "key": {
+    "X": {
+      "item": "minecraft:cobblestone"
+    },
+    "Y": {
+      "item": "compressedbase:component_base"
+    },
+    "Z": {
+      "item": "minecraft:torch"
+    }
+  },
+  "result": {
+    "item": "compressedbase:component_wall",
+    "count": 1
+  }
+}
