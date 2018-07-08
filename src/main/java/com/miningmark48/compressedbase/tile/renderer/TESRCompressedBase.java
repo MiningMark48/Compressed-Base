@@ -68,8 +68,6 @@ public class TESRCompressedBase extends TileEntitySpecialRenderer<TileEntityComp
                 RenderGlobal.drawBoundingBox(buffer, mx, my, mz, mx + xSize, my + ySize, mz + zSize, colorBorder.getRed() / 255f, colorBorder.getGreen() / 255f, colorBorder.getBlue() / 255f, 1f);
                 tess.draw();
 
-
-
                 GlStateManager.popMatrix();
             }
         }
