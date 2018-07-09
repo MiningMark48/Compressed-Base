@@ -26,6 +26,10 @@ tooltip.block.compressed_base.line3=Make a pattern with Compressed Base Extensio
 tooltip.block.compressed_base.line4=and right click the central block.
 tooltip.block.compressed_base_extension.line1=Extensions to the 9x9!
 
+#Chat
+chat.actionbar.structure.invalid=Invalid!
+chat.actionbar.structure.valid=Valid!
+
 #Subtitles
 subtitles.block.compressed_base.dw20=Direwolf20 Yells
 

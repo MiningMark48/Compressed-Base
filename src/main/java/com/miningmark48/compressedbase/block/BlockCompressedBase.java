@@ -22,6 +22,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -31,8 +32,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+
+import static com.miningmark48.compressedbase.util.WorldUtil.*;
 
 public class BlockCompressedBase extends BlockContainer {
 
@@ -124,12 +128,24 @@ public class BlockCompressedBase extends BlockContainer {
 
     @Override
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        Directions directions = getDirections(worldIn, pos);
+
+        boolean isValid = isValidArea(worldIn, pos, directions);
+
+        if (!isValid) {
+            playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_RED + "" + TextFormatting.BOLD + ModTranslate.toLocal("chat.actionbar.structure.invalid")), true);
+        }
+
         if (!playerIn.isSneaking()) {
+
+            if (!isValid) {
+                return false;
+            }
+
             // Yeah, I know. This logic is bad, but it works :D
             if (!worldIn.isRemote) {
                 Rotation rotation = Rotation.NONE;
                 EnumFacing chestOrientation = EnumFacing.NORTH;
-                Directions directions = Directions.NONE;
 
                 if (state.getValue(FACING) == EnumFacing.NORTH) {
                     rotation = Rotation.NONE;
@@ -143,52 +159,6 @@ public class BlockCompressedBase extends BlockContainer {
                 } else if (state.getValue(FACING) == EnumFacing.WEST) {
                     rotation = Rotation.COUNTERCLOCKWISE_90;
                     chestOrientation = EnumFacing.WEST;
-                }
-
-                if (isCompressedBaseExtension(worldIn, pos.north())) {
-                    if (isCompressedBaseExtension(worldIn, pos.south())) {
-                        if (isCompressedBaseExtension(worldIn, pos.east())) {
-                            if (isCompressedBaseExtension(worldIn, pos.west())) {
-                                directions = Directions.ALL;
-                            } else {
-                                directions = Directions.NORTH_SOUTH_EAST;
-                            }
-                        } else if (isCompressedBaseExtension(worldIn, pos.west())) {
-                            directions = Directions.NORTH_SOUTH_WEST;
-                        } else {
-                            directions = Directions.NORTH_SOUTH;
-                        }
-                    } else if (isCompressedBaseExtension(worldIn, pos.east())) {
-                        if (isCompressedBaseExtension(worldIn, pos.west())) {
-                            directions = Directions.NORTH_EAST_WEST;
-                        } else {
-                            directions = Directions.NORTH_EAST;
-                        }
-                    } else if (isCompressedBaseExtension(worldIn, pos.west())) {
-                        directions = Directions.NORTH_WEST;
-                    } else {
-                        directions = Directions.NORTH;
-                    }
-                } else if (isCompressedBaseExtension(worldIn, pos.south())) {
-                    if (isCompressedBaseExtension(worldIn, pos.east())) {
-                        if (isCompressedBaseExtension(worldIn, pos.west())) {
-                            directions = Directions.SOUTH_EAST_WEST;
-                        } else {
-                            directions = Directions.SOUTH_EAST;
-                        }
-                    } else if (isCompressedBaseExtension(worldIn, pos.west())) {
-                        directions = Directions.SOUTH_WEST;
-                    } else {
-                        directions = Directions.SOUTH;
-                    }
-                } else if (isCompressedBaseExtension(worldIn, pos.east())) {
-                    if (isCompressedBaseExtension(worldIn, pos.west())) {
-                        directions = Directions.EAST_WEST;
-                    } else {
-                        directions = Directions.EAST;
-                    }
-                } else if (isCompressedBaseExtension(worldIn, pos.west())) {
-                    directions = Directions.WEST;
                 }
 
                 StructureBase.generateStructure((WorldServer) worldIn, pos, new Random(), rotation, chestOrientation, directions);
@@ -209,6 +179,7 @@ public class BlockCompressedBase extends BlockContainer {
                 TileEntityCompressedBase te = (TileEntityCompressedBase) worldIn.getTileEntity(pos);
                 assert te != null;
                 if (worldIn.isRemote) te.startPreview();
+                if (isValid) playerIn.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "" + TextFormatting.BOLD + ModTranslate.toLocal("chat.actionbar.structure.valid")), true);
                 return true;
             }
             return false;
@@ -272,4 +243,144 @@ public class BlockCompressedBase extends BlockContainer {
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         return new TileEntityCompressedBase();
     }
+
+    private static Directions getDirections(World world, BlockPos pos) {
+        Directions directions = Directions.NONE;
+        if (isCompressedBaseExtension(world, pos.north())) {
+            if (isCompressedBaseExtension(world, pos.south())) {
+                if (isCompressedBaseExtension(world, pos.east())) {
+                    if (isCompressedBaseExtension(world, pos.west())) {
+                        directions = Directions.ALL;
+                    } else {
+                        directions = Directions.NORTH_SOUTH_EAST;
+                    }
+                } else if (isCompressedBaseExtension(world, pos.west())) {
+                    directions = Directions.NORTH_SOUTH_WEST;
+                } else {
+                    directions = Directions.NORTH_SOUTH;
+                }
+            } else if (isCompressedBaseExtension(world, pos.east())) {
+                if (isCompressedBaseExtension(world, pos.west())) {
+                    directions = Directions.NORTH_EAST_WEST;
+                } else {
+                    directions = Directions.NORTH_EAST;
+                }
+            } else if (isCompressedBaseExtension(world, pos.west())) {
+                directions = Directions.NORTH_WEST;
+            } else {
+                directions = Directions.NORTH;
+            }
+        } else if (isCompressedBaseExtension(world, pos.south())) {
+            if (isCompressedBaseExtension(world, pos.east())) {
+                if (isCompressedBaseExtension(world, pos.west())) {
+                    directions = Directions.SOUTH_EAST_WEST;
+                } else {
+                    directions = Directions.SOUTH_EAST;
+                }
+            } else if (isCompressedBaseExtension(world, pos.west())) {
+                directions = Directions.SOUTH_WEST;
+            } else {
+                directions = Directions.SOUTH;
+            }
+        } else if (isCompressedBaseExtension(world, pos.east())) {
+            if (isCompressedBaseExtension(world, pos.west())) {
+                directions = Directions.EAST_WEST;
+            } else {
+                directions = Directions.EAST;
+            }
+        } else if (isCompressedBaseExtension(world, pos.west())) {
+            directions = Directions.WEST;
+        }
+        return directions;
+    }
+
+    private static boolean isValidArea(World world, BlockPos centralPos, Directions directions) {
+        int horizontal = 4;
+        int up = 4;
+        int down = 0;
+        
+        int offsetAmount = 12;
+
+        boolean northCheck = false;
+        boolean southCheck = false;
+        boolean eastCheck = false;
+        boolean westCheck = false;
+
+        LinkedList<BlockPos> blocks = getBlocksWithinArea(centralPos, horizontal, up, down);
+        LinkedList<BlockPos> northBlocks = getBlocksWithinArea(centralPos.north(offsetAmount), horizontal, up, down);
+        LinkedList<BlockPos> southBlocks = getBlocksWithinArea(centralPos.south(offsetAmount), horizontal, up, down);
+        LinkedList<BlockPos> eastBlocks = getBlocksWithinArea(centralPos.east(offsetAmount), horizontal, up, down);
+        LinkedList<BlockPos> westBlocks = getBlocksWithinArea(centralPos.west(offsetAmount), horizontal, up, down);
+
+        switch (directions) {
+            default:
+            case NONE:
+                break;
+            case NORTH:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                break;
+            case SOUTH:
+                northCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                break;
+            case EAST:
+                northCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                break;
+            case WEST:
+                northCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case NORTH_SOUTH:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                break;
+            case NORTH_EAST:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                break;
+            case NORTH_WEST:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case SOUTH_EAST:
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                break;
+            case SOUTH_WEST:
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case EAST_WEST:
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case NORTH_SOUTH_EAST:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                break;
+            case NORTH_SOUTH_WEST:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case NORTH_EAST_WEST:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case SOUTH_EAST_WEST:
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+            case ALL:
+                northCheck = doesAreaContainUnbreakable(world, northBlocks) || doesAreaContainTileEntity(world, northBlocks);
+                southCheck = doesAreaContainUnbreakable(world, southBlocks) || doesAreaContainTileEntity(world, southBlocks);
+                eastCheck = doesAreaContainUnbreakable(world, eastBlocks) || doesAreaContainTileEntity(world, eastBlocks);
+                westCheck = doesAreaContainUnbreakable(world, westBlocks) || doesAreaContainTileEntity(world, westBlocks);
+                break;
+        }
+
+        return !doesAreaContainUnbreakable(world, blocks) && !doesAreaContainTileEntity(world, blocks) && !northCheck && !southCheck && !eastCheck && !westCheck;
+    }
+
 }

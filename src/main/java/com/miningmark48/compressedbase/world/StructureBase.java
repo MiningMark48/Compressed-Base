@@ -64,10 +64,6 @@ public class StructureBase {
         Rotation rotationExtend2 = Rotation.NONE;
         Rotation rotationExtend3 = Rotation.NONE;
         Rotation rotationExtend4 = Rotation.NONE;
-        Vec3i vecOffset1 = new Vec3i(0,0,0);
-        Vec3i vecOffset2 = new Vec3i(0,0,0);
-        Vec3i vecOffset3 = new Vec3i(0,0,0);
-        Vec3i vecOffset4 = new Vec3i(0,0,0);
         int offsetAmount = 20;
 
         switch (direction) {
