@@ -59,3 +59,7 @@ config.showPreviewRender.desc=When enabled, the player can view a render to show
 	#Compressed Base
 config.doLoot.title=Do Loot
 config.doLoot.desc=When enabled, loot will spawn in the chests created.
+
+#Commands
+command.spawn_base.spawned=Base spawned!
+command.spawn_base.error=Error, base could not be spawned.

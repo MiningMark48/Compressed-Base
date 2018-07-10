@@ -1,5 +1,6 @@
 package com.miningmark48.compressedbase;
 
+import com.miningmark48.compressedbase.command.CommandSpawnBase;
 import com.miningmark48.compressedbase.config.ConfigurationHandler;
 import com.miningmark48.compressedbase.init.*;
 import com.miningmark48.compressedbase.proxy.CommonProxy;
@@ -64,7 +65,7 @@ public class CompressedBase {
 
     @Mod.EventHandler
     public void serverLoad(FMLServerStartingEvent event){
-
+        event.registerServerCommand(new CommandSpawnBase());
     }
 
 }
