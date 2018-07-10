@@ -1,5 +1,6 @@
 package com.miningmark48.compressedbase;
 
+import com.miningmark48.compressedbase.config.ConfigurationHandler;
 import com.miningmark48.compressedbase.init.*;
 import com.miningmark48.compressedbase.proxy.CommonProxy;
 import com.miningmark48.compressedbase.reference.Reference;
@@ -13,7 +14,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid= Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION, dependencies = Reference.MOD_DEPENDENCIES, acceptedMinecraftVersions = Reference.GAME_VERSION)
+@Mod(modid= Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS, dependencies = Reference.MOD_DEPENDENCIES, acceptedMinecraftVersions = Reference.GAME_VERSION)
 public class CompressedBase {
 
     @Mod.Instance(Reference.MOD_ID)
@@ -23,7 +24,10 @@ public class CompressedBase {
     public static CommonProxy proxy;
 
     @Mod.EventHandler
-    public void preInit(FMLPreInitializationEvent event){
+    public void preInit(FMLPreInitializationEvent event) {
+
+        ConfigurationHandler.init(event.getSuggestedConfigurationFile());
+        MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
 
         ModBlocks.init();
         ModTileEntities.init();

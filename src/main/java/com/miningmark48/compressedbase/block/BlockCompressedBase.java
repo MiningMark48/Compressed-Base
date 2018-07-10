@@ -1,5 +1,6 @@
 package com.miningmark48.compressedbase.block;
 
+import com.miningmark48.compressedbase.config.ConfigValues;
 import com.miningmark48.compressedbase.init.ModSoundEvents;
 import com.miningmark48.compressedbase.tile.TileEntityCompressedBase;
 import com.miningmark48.compressedbase.world.StructureBase;
@@ -178,7 +179,7 @@ public class BlockCompressedBase extends BlockContainer {
             if (worldIn.getTileEntity(pos) instanceof TileEntityCompressedBase) {
                 TileEntityCompressedBase te = (TileEntityCompressedBase) worldIn.getTileEntity(pos);
                 assert te != null;
-                if (worldIn.isRemote) te.startPreview();
+                if (worldIn.isRemote && ConfigValues.getShowPreviewRender()) te.startPreview();
                 if (isValid) playerIn.sendStatusMessage(new TextComponentString(TextFormatting.GREEN + "" + TextFormatting.BOLD + ModTranslate.toLocal("chat.actionbar.structure.valid")), true);
                 return true;
             }
@@ -186,6 +187,7 @@ public class BlockCompressedBase extends BlockContainer {
         }
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void addInformation(ItemStack par1ItemStack, @Nullable World world, List par3List, ITooltipFlag par4) {
         if (KeyChecker.isHoldingShift()) {
@@ -194,7 +196,7 @@ public class BlockCompressedBase extends BlockContainer {
             par3List.add(TextFormatting.GRAY + ModTranslate.toLocal("tooltip.block.compressed_base.line4"));
         } else {
             par3List.add(TextFormatting.AQUA + ModTranslate.toLocal("tooltip.block.compressed_base.line1.p1") + " " + TextFormatting.DARK_GREEN + ModTranslate.toLocal("tooltip.block.compressed_base.line1.p2"));
-            par3List.add(TextFormatting.LIGHT_PURPLE + ModTranslate.toLocal("tooltip.block.compressed_base.line5"));
+            if (ConfigValues.getShowPreviewRender()) par3List.add(TextFormatting.LIGHT_PURPLE + ModTranslate.toLocal("tooltip.block.compressed_base.line5"));
             par3List.add(ModTranslate.toLocal("tooltip.item.hold") + " " + TextFormatting.YELLOW + TextFormatting.ITALIC + ModTranslate.toLocal("tooltip.item.shift"));
         }
     }

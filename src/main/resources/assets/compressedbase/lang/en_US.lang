@@ -48,3 +48,14 @@ compressedbase.advancements.story.craft_compressed_base.title=Compressed Base
 compressedbase.advancements.story.craft_compressed_base.description=Craft a compressed base.
 compressedbase.advancements.story.craft_compressed_base_extension.title=Compressed Base Extension
 compressedbase.advancements.story.craft_compressed_base_extension.description=Craft an extension for the compressed base.
+
+#Config
+	#Category
+config.category.compressedBase.title=Compressed Base
+config.category.compressedBase.desc=Config settings for the compressed base.
+	#Client
+config.showPreviewRender.title=Show Preview Render (WIP)
+config.showPreviewRender.desc=When enabled, the player can view a render to show where the base will spawn.
+	#Compressed Base
+config.doLoot.title=Do Loot
+config.doLoot.desc=When enabled, loot will spawn in the chests created.

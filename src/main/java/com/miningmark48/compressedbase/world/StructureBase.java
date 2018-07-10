@@ -1,5 +1,6 @@
 package com.miningmark48.compressedbase.world;
 
+import com.miningmark48.compressedbase.config.ConfigValues;
 import com.miningmark48.compressedbase.reference.Reference;
 import net.minecraft.block.BlockChest;
 import net.minecraft.block.state.IBlockState;
@@ -200,9 +201,11 @@ public class StructureBase {
                 IBlockState chestState = Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, chestFacing);
                 world.setBlockState(dataPos, chestState);
 
-                TileEntity tile = world.getTileEntity(dataPos);
-                if (tile != null && tile instanceof TileEntityLockableLoot)
-                    ((TileEntityLockableLoot) tile).setLootTable(LOOT, random.nextLong());
+                if (ConfigValues.getDoLoot()) {
+                    TileEntity tile = world.getTileEntity(dataPos);
+                    if (tile != null && tile instanceof TileEntityLockableLoot)
+                        ((TileEntityLockableLoot) tile).setLootTable(LOOT, random.nextLong());
+                }
 
             }
 

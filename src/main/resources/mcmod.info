@@ -1,7 +1,7 @@
 [
   {
     "_comment": "Generated using MiningMark48's JSON Generator.",
-    "modid": "CompressedBase",
+    "modid": "compressedbase",
     "name": "Compressed Base",
     "description": "It's a compressed base!",
     "version": "0.0.1",
