@@ -94,13 +94,17 @@ public class TESRCompressedBase extends TileEntitySpecialRenderer<TileEntityComp
     }
 
     private static void renderBlock(double doubleX, double doubleY, double doubleZ, IBlockState state, BlockPos pos, World world, BufferBuilder buffer, Tessellator tess, BlockRendererDispatcher dispatcher) {
+        BlockPos newPos = pos.add(1, 0, 1);
+
+        if (!(world.getBlockState(newPos).getBlock() == Blocks.AIR)) {
+            return;
+        }
+
         GlStateManager.pushMatrix();
         GlStateManager.enableBlend();
         GlStateManager.blendFunc(GL11.GL_CONSTANT_ALPHA, GL11.GL_ONE_MINUS_CONSTANT_ALPHA);
         GlStateManager.translate(-doubleX, -doubleY, -doubleZ);
         buffer.begin(7, DefaultVertexFormats.BLOCK);
-
-        BlockPos newPos = pos.add(1, 0, 1);
 
         IBlockState newState = state.getActualState(world, newPos);
 
