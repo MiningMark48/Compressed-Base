@@ -22,9 +22,9 @@ import java.util.Random;
 
 public class StructureBase {
 
-    public static final ResourceLocation STRUCTURE = new ResourceLocation(Reference.MOD_ID, "9x9");
-    public static final ResourceLocation STRUCTURE_EXTEND = new ResourceLocation(Reference.MOD_ID, "9x9extend");
-    public static final ResourceLocation LOOT = new ResourceLocation(Reference.MOD_ID, "9x9_loot");
+    private static final ResourceLocation STRUCTURE = new ResourceLocation(Reference.MOD_ID, "9x9"); //Main part of base
+    private static final ResourceLocation STRUCTURE_EXTEND = new ResourceLocation(Reference.MOD_ID, "9x9extend"); //Extension to base
+    private static final ResourceLocation LOOT = new ResourceLocation(Reference.MOD_ID, "9x9_loot"); //Loot table
 
     public static void generateStructure(WorldServer world, BlockPos pos, Random random, Rotation rotation, EnumFacing chestOrientation, Directions direction) {
 
@@ -207,6 +207,10 @@ public class StructureBase {
                         ((TileEntityLockableLoot) tile).setLootTable(LOOT, random.nextLong());
                 }
 
+            } else if (s.equals("chest")) {
+                EnumFacing chestFacing = settings.getRotation().rotate(chestOrientation);
+                IBlockState chestState = Blocks.CHEST.getDefaultState().withProperty(BlockChest.FACING, chestFacing);
+                world.setBlockState(dataPos, chestState);
             }
 
         }
