@@ -57,6 +57,8 @@ config.category.compressedBase.desc=Config settings for the compressed base.
 config.showPreviewRender.title=Show Preview Render (WIP)
 config.showPreviewRender.desc=When enabled, the player can view a render to show where the base will spawn.
 	#Compressed Base
+config.doBlockCheck.title=Do Block Check
+config.doBlockCheck.desc=When enabled, there must be no tile entities or unbreakable blocks within the base spawning area.
 config.doLoot.title=Do Loot
 config.doLoot.desc=When enabled, loot will spawn in the chests created.
 

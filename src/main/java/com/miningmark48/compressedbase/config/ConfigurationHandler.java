@@ -16,6 +16,7 @@ public class ConfigurationHandler {
     static boolean showPreviewRender;
 
     //Compressed Base
+    static boolean doBlockCheck;
     static boolean doLoot;
 
     public static void init(File configFile){
@@ -46,6 +47,7 @@ public class ConfigurationHandler {
         showPreviewRender = configuration.getBoolean(ModTranslate.toLocal("config.showPreviewRender.title"), Configuration.CATEGORY_CLIENT, true, ModTranslate.toLocal("config.showPreviewRender.desc"));
 
         //Compressed Base
+        doBlockCheck = configuration.getBoolean(ModTranslate.toLocal("config.doBlockCheck.title"), ModTranslate.toLocal("config.category.compressedBase.title"), true, ModTranslate.toLocal("config.doBlockCheck.desc"));
         doLoot = configuration.getBoolean(ModTranslate.toLocal("config.doLoot.title"), ModTranslate.toLocal("config.category.compressedBase.title"), true, ModTranslate.toLocal("config.doLoot.desc"));
 
         if (configuration.hasChanged()){

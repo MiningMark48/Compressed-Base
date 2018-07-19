@@ -131,7 +131,7 @@ public class BlockCompressedBase extends BlockContainer {
     public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         Directions directions = getDirections(worldIn, pos);
 
-        boolean isValid = isValidArea(worldIn, pos, directions);
+        boolean isValid = isValidArea(worldIn, pos, directions) || !ConfigValues.getDoBlockCheck();
 
         if (!isValid) {
             playerIn.sendStatusMessage(new TextComponentString(TextFormatting.DARK_RED + "" + TextFormatting.BOLD + ModTranslate.toLocal("chat.actionbar.structure.invalid")), true);

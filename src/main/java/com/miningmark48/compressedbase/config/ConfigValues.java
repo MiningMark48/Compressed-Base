@@ -8,6 +8,10 @@ public class ConfigValues {
     }
 
     //Compressed Base
+    public static boolean getDoBlockCheck() {
+        return ConfigurationHandler.doBlockCheck;
+    }
+
     public static boolean getDoLoot() {
         return ConfigurationHandler.doLoot;
     }
