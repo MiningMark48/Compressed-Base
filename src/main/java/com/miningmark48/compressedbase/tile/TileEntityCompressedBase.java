@@ -1,11 +1,12 @@
 package com.miningmark48.compressedbase.tile;
 
+import com.miningmark48.compressedbase.config.ConfigValues;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
 
 public class TileEntityCompressedBase extends TileEntity implements ITickable {
 
-    private final int default_preview_time = 10; //seconds
+    private final int default_preview_time = ConfigValues.getPreviewRenderTime(); //seconds
     private int preview_time = default_preview_time * 20; //seconds * game ticks
     private boolean doTimer = false;
 

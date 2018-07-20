@@ -7,6 +7,10 @@ public class ConfigValues {
         return ConfigurationHandler.showPreviewRender;
     }
 
+    public static int getPreviewRenderTime() {
+        return ConfigurationHandler.previewRenderTime;
+    }
+
     //Compressed Base
     public static boolean getDoBlockCheck() {
         return ConfigurationHandler.doBlockCheck;

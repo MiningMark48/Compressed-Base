@@ -56,6 +56,8 @@ config.category.compressedBase.desc=Config settings for the compressed base.
 	#Client
 config.showPreviewRender.title=Show Preview Render (WIP)
 config.showPreviewRender.desc=When enabled, the player can view a render to show where the base will spawn.
+config.previewRenderTime.title=Preview Render Time
+config.previewRenderTime.desc=Amount of time the preview render is disabled for (seconds).
 	#Compressed Base
 config.doBlockCheck.title=Do Block Check
 config.doBlockCheck.desc=When enabled, there must be no tile entities or unbreakable blocks within the base spawning area.

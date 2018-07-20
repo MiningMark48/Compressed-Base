@@ -5,6 +5,7 @@ import com.miningmark48.mininglib.utility.ModTranslate;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import scala.Int;
 
 import java.io.File;
 
@@ -14,6 +15,7 @@ public class ConfigurationHandler {
 
     //Client
     static boolean showPreviewRender;
+    static int previewRenderTime;
 
     //Compressed Base
     static boolean doBlockCheck;
@@ -45,6 +47,7 @@ public class ConfigurationHandler {
 
         //Client
         showPreviewRender = configuration.getBoolean(ModTranslate.toLocal("config.showPreviewRender.title"), Configuration.CATEGORY_CLIENT, true, ModTranslate.toLocal("config.showPreviewRender.desc"));
+        previewRenderTime = configuration.getInt(ModTranslate.toLocal("config.previewRenderTime.title"), Configuration.CATEGORY_CLIENT, 10, 1, 60, ModTranslate.toLocal("config.previewRenderTime.desc"));
 
         //Compressed Base
         doBlockCheck = configuration.getBoolean(ModTranslate.toLocal("config.doBlockCheck.title"), ModTranslate.toLocal("config.category.compressedBase.title"), true, ModTranslate.toLocal("config.doBlockCheck.desc"));
