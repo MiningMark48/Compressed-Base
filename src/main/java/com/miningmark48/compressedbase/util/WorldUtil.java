@@ -2,10 +2,11 @@ package com.miningmark48.compressedbase.util;
 
 import com.miningmark48.compressedbase.tile.TileEntityCompressedBase;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import java.util.LinkedList;
+import java.util.*;
 
 public class WorldUtil {
 
@@ -38,6 +39,31 @@ public class WorldUtil {
             }
         }
         return false;
+    }
+
+    //For sorting blocks based on distance to player, mainly used for rendering
+    //Borrowed code from DW20 :P
+    public static ArrayList<BlockPos> sortByDistance(ArrayList<BlockPos> unSortedList, EntityPlayer player) {
+        ArrayList<BlockPos> sortedList = new ArrayList<>();
+        Map<Double, BlockPos> rangeMap = new HashMap<>();
+        Double distances[] = new Double[unSortedList.size()];
+        Double distance;
+        double x = player.posX;
+        double y = player.posY + player.getEyeHeight();
+        double z = player.posZ;
+        int i = 0;
+        for (BlockPos pos : unSortedList) {
+            distance = pos.distanceSqToCenter(x, y, z);
+            rangeMap.put(distance, pos);
+            distances[i] = distance;
+            i++;
+        }
+        Arrays.sort(distances);
+
+        for (Double dist : distances) {
+            sortedList.add(rangeMap.get(dist));
+        }
+        return sortedList;
     }
 
 }
