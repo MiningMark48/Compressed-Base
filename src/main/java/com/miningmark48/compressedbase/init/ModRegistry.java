@@ -27,6 +27,7 @@ public class ModRegistry {
         registerItem(ModItems.component_base);
         registerItem(ModItems.component_ceiling);
         registerItem(ModItems.component_wall);
+        registerItem(ModItems.base_previewer);
     }
 
     private static void registerBlocks(){
@@ -39,6 +40,7 @@ public class ModRegistry {
         registerItemRender(ModItems.component_base);
         registerItemRender(ModItems.component_ceiling);
         registerItemRender(ModItems.component_wall);
+        registerItemRender(ModItems.base_previewer);
     }
 
     public static void registerRenderBlocks(){

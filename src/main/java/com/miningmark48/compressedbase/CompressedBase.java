@@ -2,6 +2,7 @@ package com.miningmark48.compressedbase;
 
 import com.miningmark48.compressedbase.command.CommandSpawnBase;
 import com.miningmark48.compressedbase.config.ConfigurationHandler;
+import com.miningmark48.compressedbase.event.EventRenderBasePreview;
 import com.miningmark48.compressedbase.init.*;
 import com.miningmark48.compressedbase.proxy.CommonProxy;
 import com.miningmark48.compressedbase.reference.Reference;

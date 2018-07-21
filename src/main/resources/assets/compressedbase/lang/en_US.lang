@@ -14,10 +14,14 @@ item.component_amenity.name=Amenity Component
 item.component_base.name=Component Base
 item.component_ceiling.name=Ceiling Component
 item.component_wall.name=Wall Component
+item.base_previewer.name=Base Previewer
 
 #Tooltips
 tooltip.item.hold=Hold
 tooltip.item.shift=Sneak
+tooltip.item.basePreviewer.bound=Bound to: 
+tooltip.item.basePreviewer.howUnbind=Right Click to unbind.
+tooltip.item.basePreviewer.howBind=Shift + Right Click a block to bind.
 tooltip.block.compressed_base.line1.p1=Direwolf20's
 tooltip.block.compressed_base.line1.p2=9x9 base in a single block!
 tooltip.block.compressed_base.line5=Sneak + Right Click to toggle preview (WIP).
@@ -29,6 +33,9 @@ tooltip.block.compressed_base_extension.line1=Extensions to the 9x9!
 #Chat
 chat.actionbar.structure.invalid=Invalid!
 chat.actionbar.structure.valid=Valid!
+chat.actionbar.item.basePreviewer.cleared=Cleared Binding!
+chat.actionbar.item.basePreviewer.bound=Bound to: 
+chat.actionbar.item.basePreviewer.howBind=Look at a block to bind.
 
 #Subtitles
 subtitles.block.compressed_base.dw20=Direwolf20 Yells
